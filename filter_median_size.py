@@ -1,5 +1,4 @@
 import numpy as np
-import cv2
 from PIL import Image
 import tensorflow as tf
 
@@ -29,21 +28,13 @@ def median_filter(data, filter_size):
     return data_final
 
 
-def log10(x):
-    numerator = tf.math.log(x)
-    denominator = tf.math.log(tf.constant(10, dtype=numerator.dtype))
-    return numerator / denominator
-
-
-def psnr(im1, im2):
-    img_arr1 = np.array(im1).astype('float32')
-    img_arr2 = np.array(im2).astype('float32')
-    mse = tf.reduce_mean(tf.math.squared_difference(img_arr1, img_arr2))
-    psnr = tf.constant(255**2, dtype=tf.float32)/mse
-    result = tf.constant(10, dtype=tf.float32)*log10(psnr)
-    with tf.Session():
-        result = result.eval()
-    return result
+def psnr():
+    # Read images from file.
+    im1 = tf.io.decode_png('image_test/Noisy-image-Gaussian-noise-with-mean-and-variance-0005.png')
+    im2 = tf.io.decode_png('image_out/recover_median.png')
+    # Compute PSNR over tf.uint8 Tensors.
+    psnr1 = tf.image.psnr(im1, im2, max_val=255)
+    return (psnr1)
 
 def main():
     img = Image.open("image_test/Noisy-image-Gaussian-noise-with-mean-and-variance-0005.png").convert("L")
