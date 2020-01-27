@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-img = cv2.imread('images/cat.jpg', cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('image_test/fruit_20p_noise.jpg', 0)
 img_out = img.copy()
 
 height = img.shape[0]
@@ -18,7 +18,7 @@ for i in np.arange(3, height-3):
         b = min
         img_out.itemset((i,j), b)
 
-cv2.imwrite('images/filter_min.jpg', img_out)
+cv2.imwrite('image_out/recover_min_n.jpg', img_out)
 
 cv2.imshow('image',img_out)
 cv2.waitKey(0)

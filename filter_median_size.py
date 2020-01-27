@@ -28,8 +28,6 @@ def median_filter(data, filter_size):
             temp = []
     return data_final
 
-
-
 def psnr(img1, img2):
     mse = np.mean( (img1 - img2) ** 2 )
     if mse == 0:
@@ -54,7 +52,7 @@ def main():
     im_target_path = 'image_target/fruit.jpg'
     img_target = cv2.imread(im_target_path)
 
-    psnr_scratch = psnr(img_target, img_recover,)
+    psnr_scratch = psnr(img_target, img_recover)
     print (psnr_scratch)
 
     
