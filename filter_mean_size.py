@@ -44,7 +44,7 @@ def main():
     img_target = cv2.imread('image_target/imtarget.jpg')
     img_recover2 = cv2.imread('image_out/recover_mean.jpg')
     psnr_library = peak_signal_noise_ratio(img_target,img_recover2)
-    print(psnr_library)
+    print('PSNR MEAN:',psnr_library)
 
     # psnr_scratch = psnr(img_target, img_recover)
     # print (psnr_scratch)
