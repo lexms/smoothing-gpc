@@ -37,7 +37,7 @@ def psnr(img1, img2):
 
 def main():
     #load image
-    im1_path = 'image_test/fruit_20p_noise.jpg'
+    im1_path = 'image_test/test_noise_added.jpg'
     img1 = cv2.imread(im1_path, 0)
     
     #run filter
@@ -46,20 +46,17 @@ def main():
 
     #save image
     im_recover_path = 'image_out/recover_median.jpg'
-    img_recover = cv2.imwrite(im_recover_path,removed_noise)
+    cv2.imwrite(im_recover_path,removed_noise)
 
-    #open target
-    im_target_path = 'image_target/fruit.jpg'
-    img_target = cv2.imread(im_target_path)
 
-    psnr_scratch = psnr(img_target, img_recover)
-    print (psnr_scratch)
 
+    from skimage.metrics import peak_signal_noise_ratio
+    img_target = cv2.imread('image_target/imtarget.jpg')
+    img_recover2 = cv2.imread('image_out/recover_median.jpg')
+    psnr_library = peak_signal_noise_ratio(img_target,img_recover2)
+    print(psnr_library)
     
-    #from skimage.metrics import peak_signal_noise_ratio
-    #img_recover2 = cv2.imread('image_out/recover_median.jpg')
-    #psnr_library = peak_signal_noise_ratio(img_target,img_recover2)
-    #print(psnr_library)
-    
+    #psnr_scratch = psnr(img_target, img_recover)
+    #print (psnr_scratch)
 main()
 

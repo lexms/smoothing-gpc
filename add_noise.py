@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from skimage.util import random_noise
 
-img = cv2.imread('image_target/fruit.jpg')
+img = cv2.imread('image_target/imtarget.jpg')
 
 img_noise = random_noise(img, mode='s&p',amount=0.3)
 
